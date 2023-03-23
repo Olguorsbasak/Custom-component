@@ -1,0 +1,99 @@
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #EAF1F7;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+}
+
+.my-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  color-scheme: light;
+  width: 120%;
+  height: 120%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow:#C5D7ED;
+
+  transform: scale(1.2);
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+}
+.input {
+  width: 95%;
+  height: 40px; 
+  text-align: center;
+  color:#334F70;
+  border-radius: 5px;
+  font-weight: bold;
+  
+
+  
+}
+
+.increment-button {
+  width: 96%;
+  padding: 10px;
+  border-radius: 2%;
+  background: linear-gradient(to right, #A6C4E0, #334F70);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
+  
+}
+.increment-button:hover {
+  transform: scale(1.05);
+}
+
+.decrement-button{
+  width: 96%;
+  padding: 10px;
+  border-radius: 2%;
+  background: linear-gradient(to right, #334F70, #A6C4E0);
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  font-weight: bold;
+  
+  
+}
+.decrement-button:hover {
+  transform: scale(1.05);
+}
+.count{
+  color:#334F70;
+  font-size: 20px;
+}
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
