@@ -3,12 +3,11 @@ $secondary-color: #a6c4e0;
 
 :root {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.5;
     font-weight: 400;
+    font-synthesis: none;
+    line-height: 1.5;
     color: rgba(255, 255, 255, 0.87);
     background-color: #eaf1f7;
-
-    font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -20,17 +19,14 @@ $secondary-color: #a6c4e0;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    color-scheme: light;
+    max-width: 600px;
     width: 120%;
     height: 120%;
-    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: #c5d7ed;
-
     transform: scale(1.2);
 
     @media (max-width: 768px) {
@@ -43,51 +39,40 @@ $secondary-color: #a6c4e0;
         height: 40px;
         text-align: center;
         color: $primary-color;
-        border-radius: 5px;
         font-weight: bold;
+        border-radius: 5px;
+    }
+
+    .button {
+        width: 96%;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(to right, $secondary-color, $primary-color);
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 
     .increment-button {
-        width: 96%;
-        padding: 10px;
-        border-radius: 2%;
+        @extend .button;
         background: linear-gradient(to right, $secondary-color, $primary-color);
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        font-weight: bold;
-
-        &:hover {
-            transform: scale(1.05);
-        }
     }
 
     .decrement-button {
-        width: 96%;
-        padding: 10px;
-        border-radius: 2%;
+        @extend .button;
         background: linear-gradient(to right, $primary-color, $secondary-color);
-        color: #fff;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        border: none;
-        font-weight: bold;
-
-        &:hover {
-            transform: scale(1.05);
-        }
     }
 
     .count {
-        color: $primary-color;
         font-size: 20px;
+        color: $primary-color;
     }
 }
 
