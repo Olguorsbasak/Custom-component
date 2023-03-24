@@ -9,7 +9,7 @@ export default {
 
 <template>
   <div class="page-container">
-    <MyComponent v-model="count" />
+    <MyComponent v-model="count"> </MyComponent>
   </div>
 </template>
 

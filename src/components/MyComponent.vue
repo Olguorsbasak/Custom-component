@@ -1,13 +1,21 @@
 <template>
-  <div class="my-component">
-    <button
-      class="increment-button"
-      @mousedown="startIncrement"
-      @mouseup="stopInterval"
-      @mouseleave="stopInterval"
+  <div class="input-component">
+    <slot
+      name="incrementbutton"
+      :onmousedown="startIncrement"
+      :onmouseup="stopInterval"
+      :onclick="stopInterval"
     >
-      +
-    </button>
+      <button
+        class="increment-button"
+        @mousedown="startIncrement"
+        @mouseup="stopInterval"
+        @click="stopInterval"
+      >
+        +
+      </button>
+    </slot>
+
     <input
       class="input"
       type="text"
@@ -17,14 +25,21 @@
       @input="count = parseFloat($event.target.value) || 0"
       style="-moz-appearance: textfield; -webkit-appearance: textfield"
     />
-    <button
-      class="decrement-button"
-      @mousedown="startDecrement"
-      @mouseup="stopInterval"
-      @mouseleave="stopInterval"
+    <slot
+      name="decrementbutton"
+      :onmousedown="startDecrement"
+      :onmouseup="stopInterval"
+      :onclick="stopInterval"
     >
-      -
-    </button>
+      <button
+        class="decrement-button"
+        @mousedown="startDecrement"
+        @mouseup="stopInterval"
+        @click="stopInterval"
+      >
+        -
+      </button>
+    </slot>
     <p class="count">Count: {{ count }}</p>
   </div>
 </template>
@@ -80,4 +95,3 @@ export default {
 </script>
 
 <style scoped></style>
-<link rel="stylesheet/scss" href="~/assets/styles/MyComponent.scss" />
