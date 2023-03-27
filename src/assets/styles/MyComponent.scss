@@ -19,61 +19,63 @@ $secondary-color: #a6c4e0;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    max-width: 600px;
-    width: 120%;
-    height: 120%;
-    margin: 0 auto;
+    width: 100%;
     padding: 20px;
+    margin: 0 auto;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: #c5d7ed;
-    transform: scale(1.2);
 
     @media (max-width: 768px) {
-        max-width: 100%;
         border-radius: 0;
     }
+}
 
-    .input {
-        width: 95%;
-        height: 40px;
-        text-align: center;
-        color: $primary-color;
-        font-weight: bold;
-        border-radius: 5px;
+.input {
+    flex-grow: 1;
+    text-align: center;
+    color: $primary-color;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+
+.button {
+    flex-grow: 0;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to right, $secondary-color, $primary-color);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
     }
 
-    .button {
-        width: 96%;
-        padding: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        color: #fff;
-        background: linear-gradient(to right, $secondary-color, $primary-color);
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-
-        &:hover {
-            transform: scale(1.05);
-        }
+    &:hover {
+        transform: scale(1.05);
     }
+}
 
-    .increment-button {
-        @extend .button;
-        background: linear-gradient(to right, $secondary-color, $primary-color);
-    }
+.increment-button {
+    @extend .button;
+    background: linear-gradient(to right, $secondary-color, $primary-color);
+}
 
-    .decrement-button {
-        @extend .button;
-        background: linear-gradient(to right, $primary-color, $secondary-color);
-    }
-
-    .count {
-        font-size: 20px;
-        color: $primary-color;
-    }
+.decrement-button {
+    @extend .button;
+    background: linear-gradient(to right, $primary-color, $secondary-color);
 }
 
 .page-container {
@@ -81,4 +83,5 @@ $secondary-color: #a6c4e0;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100%;
 }
