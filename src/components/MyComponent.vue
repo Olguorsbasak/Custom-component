@@ -10,7 +10,7 @@
         class="increment-button"
         @mousedown="startIncrement"
         @mouseup="stopInterval"
-        @click="stopInterval"
+        @click="onIncrementClick"
       >
         +
       </button>
@@ -19,10 +19,10 @@
     <input
       class="input"
       type="text"
-      :value="count"
+      :value="modelValue"
       :placeholder="0"
       min="0"
-      @input="count = parseFloat($event.target.value) || 0"
+      @input="onInput"
       style="-moz-appearance: textfield; -webkit-appearance: textfield"
     />
     <slot
@@ -35,32 +35,31 @@
         class="decrement-button"
         @mousedown="startDecrement"
         @mouseup="stopInterval"
-        @click="stopInterval"
+        @click="onDecrementClick"
       >
         -
       </button>
     </slot>
-    <p class="count">Count: {{ count }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  emits: ["increment-click", "update:modelValue", "decrement-click"],
   props: {
-    value: {
+    modelValue: {
       type: Number,
-      required: true,
     },
   },
   data() {
     return {
-      count: this.value || 0,
       intervalId: null,
     };
   },
   methods: {
     startIncrement() {
-      this.count = parseFloat(this.count);
+      const count = parseFloat(this.modelValue);
+      this.$emit("update:modelValue", count);
       this.increment();
       this.intervalId = setTimeout(() => {
         this.intervalId = setInterval(() => {
@@ -68,8 +67,21 @@ export default {
         }, 50);
       }, 500);
     },
+    onInput(event) {
+      this.$emit("update:modelValue", event.target.value);
+    },
+    onIncrementClick() {
+      this.stopInterval();
+      this.$emit("increment-click", this.modelValue);
+    },
+    onDecrementClick() {
+      this.stopInterval();
+      this.$emit("decrement-click", this.modelValue);
+    },
+
     startDecrement() {
-      this.count = parseFloat(this.count);
+      const count = parseFloat(this.modelValue);
+      this.$emit("update:modelValue", count);
       this.decrement();
       this.intervalId = setTimeout(() => {
         this.intervalId = setInterval(() => {
@@ -81,14 +93,15 @@ export default {
       clearInterval(this.intervalId);
     },
     increment() {
-      this.count++;
+      let count = this.modelValue;
+      this.$emit("update:modelValue", count + 1);
     },
     decrement() {
-      if (this.count > 0) {
-        this.count--;
-      } else {
-        this.count = 0;
+      let count = 0;
+      if (this.modelValue > 0) {
+        count = this.modelValue;
       }
+      this.$emit("update:modelValue", count - 1);
     },
   },
 };

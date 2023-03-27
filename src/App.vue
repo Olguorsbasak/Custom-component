@@ -1,6 +1,11 @@
 <script>
 import MyComponent from "./components/MyComponent.vue";
 export default {
+  data() {
+    return {
+      count: 0,
+    };
+  },
   components: {
     MyComponent,
   },
