@@ -1,5 +1,5 @@
 <template>
-  <div class="input-component">
+  <div class="ob-input-component" :class="{ 'input-row': row }">
     <slot
       name="incrementbutton"
       :onmousedown="startIncrement"
@@ -18,12 +18,10 @@
 
     <input
       class="input"
-      type="text"
+      type="number"
       :value="modelValue"
       :placeholder="0"
-      min="0"
       @input="onInput"
-      style="-moz-appearance: textfield; -webkit-appearance: textfield"
     />
     <slot
       name="decrementbutton"
@@ -49,6 +47,10 @@ export default {
   props: {
     modelValue: {
       type: Number,
+    },
+    row: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -94,17 +96,25 @@ export default {
     },
     increment() {
       let count = this.modelValue;
-      this.$emit("update:modelValue", count + 1);
+      if (count < 100) {
+        this.$emit("update:modelValue", count + 1);
+      }
     },
     decrement() {
       let count = 0;
       if (this.modelValue > 0) {
         count = this.modelValue;
+        if (count > 0) {
+          this.$emit("update:modelValue", count - 1);
+        }
       }
-      this.$emit("update:modelValue", count - 1);
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.input-row {
+  flex-direction: row;
+}
+</style>

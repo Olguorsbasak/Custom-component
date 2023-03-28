@@ -3,7 +3,7 @@ $secondary-color: #a6c4e0;
 
 :root {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 400;
+    font-weight: normal;
     font-synthesis: none;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.87);
@@ -14,54 +14,53 @@ $secondary-color: #a6c4e0;
     -webkit-text-size-adjust: 100%;
 }
 
-.input-component {
+.ob-input-component {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
     padding: 20px;
-    margin: 0 auto;
 
     @media (max-width: 768px) {
         border-radius: 0;
     }
-}
+    .input {
+        flex-grow: 1;
+        text-align: center;
+        color: $primary-color;
+        font-weight: bold;
+        border-radius: 5px;
+        margin: 0px 5px 20px 5px;
+        padding: 10px;
+        font-size: 16px;
+        pointer-events: none;
 
-.input {
-    flex-grow: 1;
-    text-align: center;
-    color: $primary-color;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 16px;
-
-    @media (max-width: 768px) {
-        font-size: 14px;
-    }
-}
-
-.button {
-    flex-grow: 0;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(to right, $secondary-color, $primary-color);
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    margin-bottom: 20px;
-
-    @media (max-width: 768px) {
-        font-size: 14px;
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
     }
 
-    &:hover {
-        transform: scale(1.05);
+    .button {
+        flex-grow: 0;
+        padding: 10px 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(to right, $secondary-color, $primary-color);
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        margin-bottom: 20px;
+        line-height: 20px;
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+
+        &:hover {
+            transform: scale(1.2);
+        }
     }
 }
 
@@ -71,14 +70,7 @@ $secondary-color: #a6c4e0;
 }
 
 .decrement-button {
+    padding: 14px 14px;
     @extend .button;
     background: linear-gradient(to right, $primary-color, $secondary-color);
-}
-
-.page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
 }

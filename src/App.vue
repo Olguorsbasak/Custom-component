@@ -6,6 +6,11 @@ export default {
       count: 0,
     };
   },
+  watch: {
+    count() {
+      console.log(this.count);
+    },
+  },
   components: {
     MyComponent,
   },
@@ -14,8 +19,23 @@ export default {
 
 <template>
   <div class="page-container">
-    <MyComponent v-model="count"> </MyComponent>
+    <div class="page-content">
+      <MyComponent v-model="count" row> </MyComponent>
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.page-content {
+  width: 30px;
+  height: 30px;
+}
+</style>
