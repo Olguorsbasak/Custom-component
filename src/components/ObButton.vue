@@ -47,18 +47,14 @@ export default {
       this.$emit("stop-interval");
     },
     onMouseDown() {
-      if (this.mode === "increment") {
-        this.startIncrement();
-      } else {
-        this.startDecrement();
-      }
+      const startFunction = this.$emit(
+        this.mode === "increment" ? "start-increment" : "start-decrement"
+      );
     },
     onClick() {
-      if (this.mode === "increment") {
-        this.$emit("increment-click");
-      } else {
-        this.$emit("decrement-click");
-      }
+      const event =
+        this.mode === "increment" ? "increment-click" : "decrement-click";
+      this.$emit(event);
     },
   },
 };
