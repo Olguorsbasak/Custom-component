@@ -6,25 +6,14 @@
       :onmouseup="stopInterval"
       :onclick="stopInterval"
     >
-      <button
-        class="increment-button"
-        @mousedown="startIncrement"
-        @mouseup="stopInterval"
-        @click="onIncrementClick"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-          width="20"
-          height="20"
-        >
-          <path
-            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-          />
-        </svg>
-      </button>
+      <ObButton
+        :mode="'increment'"
+        :model-value="modelValue"
+        @increment-click="onIncrementClick"
+        @start-increment="startIncrement"
+        @stop-interval="stopInterval"
+      ></ObButton>
     </slot>
-
     <input
       class="input"
       type="number"
@@ -38,29 +27,24 @@
       :onmouseup="stopInterval"
       :onclick="stopInterval"
     >
-      <button
-        class="decrement-button"
-        @mousedown="startDecrement"
-        @mouseup="stopInterval"
-        @click="onDecrementClick"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-          width="20"
-          height="20"
-        >
-          <path
-            d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"
-          />
-        </svg>
-      </button>
+      <ObButton
+        :mode="'decrement'"
+        :model-value="modelValue"
+        @decrement-click="onDecrementClick"
+        @start-decrement="startDecrement"
+        @stop-interval="stopInterval"
+      ></ObButton>
     </slot>
   </div>
 </template>
 
 <script>
+import ObButton from "./ObButton.vue";
+
 export default {
+  components: {
+    ObButton,
+  },
   emits: ["increment-click", "update:modelValue", "decrement-click"],
   props: {
     modelValue: {
@@ -78,8 +62,6 @@ export default {
   },
   methods: {
     startIncrement() {
-      const count = parseFloat(this.modelValue);
-      this.$emit("update:modelValue", count);
       this.increment();
       this.intervalId = setTimeout(() => {
         this.intervalId = setInterval(() => {
@@ -100,8 +82,6 @@ export default {
     },
 
     startDecrement() {
-      const count = parseFloat(this.modelValue);
-      this.$emit("update:modelValue", count);
       this.decrement();
       this.intervalId = setTimeout(() => {
         this.intervalId = setInterval(() => {
@@ -133,6 +113,8 @@ export default {
 
 <style lang="scss" scoped>
 .input-row {
+  display: flex;
   flex-direction: row;
+  align-items: center;
 }
 </style>
