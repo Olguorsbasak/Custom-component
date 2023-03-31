@@ -37,24 +37,14 @@ export default {
     };
   },
   methods: {
-    startIncrement() {
-      this.$emit("start-increment");
-    },
-    startDecrement() {
-      this.$emit("start-decrement");
-    },
     stopInterval() {
       this.$emit("stop-interval");
     },
     onMouseDown() {
-      const startFunction = this.$emit(
-        this.mode === "increment" ? "start-increment" : "start-decrement"
-      );
+      this.$emit(`start-${this.mode}`);
     },
     onClick() {
-      const event =
-        this.mode === "increment" ? "increment-click" : "decrement-click";
-      this.$emit(event);
+      this.$emit(`${this.mode}-click`);
     },
   },
 };

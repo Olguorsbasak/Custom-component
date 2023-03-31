@@ -54,6 +54,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    minValue: {
+      type: Number,
+      default: 0,
+    },
+    maxValue: {
+      type: Number,
+      default: 100,
+    },
   },
   data() {
     return {
@@ -92,20 +100,20 @@ export default {
     stopInterval() {
       clearInterval(this.intervalId);
     },
-    increment() {
-      let count = this.modelValue;
-      if (count < 100) {
-        this.$emit("update:modelValue", count + 1);
+    increment(step = 1, max = 100) {
+      let count = this.modelValue + step;
+      if (count > max) {
+        count = max;
       }
+      this.$emit("update:modelValue", count);
     },
-    decrement() {
-      let count = 0;
-      if (this.modelValue > 0) {
-        count = this.modelValue;
-        if (count > 0) {
-          this.$emit("update:modelValue", count - 1);
-        }
+
+    decrement(step = 1, min = 0) {
+      let count = this.modelValue - step;
+      if (count < min) {
+        count = min;
       }
+      this.$emit("update:modelValue", count);
     },
   },
 };
