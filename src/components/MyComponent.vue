@@ -62,6 +62,10 @@ export default {
       type: Number,
       default: 100,
     },
+    step: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
@@ -100,18 +104,17 @@ export default {
     stopInterval() {
       clearInterval(this.intervalId);
     },
-    increment(step = 1, max = 100) {
-      let count = this.modelValue + step;
-      if (count > max) {
-        count = max;
+    increment() {
+      let count = this.modelValue + this.step;
+      if (count > this.maxValue) {
+        count = this.maxValue;
       }
       this.$emit("update:modelValue", count);
     },
-
-    decrement(step = 1, min = 0) {
-      let count = this.modelValue - step;
-      if (count < min) {
-        count = min;
+    decrement() {
+      let count = this.modelValue - this.step;
+      if (count < this.minValue) {
+        count = this.minValue;
       }
       this.$emit("update:modelValue", count);
     },
